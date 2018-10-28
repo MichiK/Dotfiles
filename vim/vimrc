@@ -1,0 +1,80 @@
+" besser ist das
+set nocompatible
+
+" nicht gespeicherte Buffer erlauben
+set hidden
+
+" nicht verweigern, sondern fragen
+set confirm
+
+" Syntax-Highlighting bitte
+syntax on
+
+" dunkler Hintergrund, für alle Fälle
+set background=dark
+
+" #&!$*
+set mouse=
+
+" Zeilennummern in grau
+set number
+highlight LineNr ctermfg=DarkGrey
+
+" automatische Einrückung
+set autoindent
+
+" beim Zeilenumbruch im Kommentar den Kommentar erhalten
+set formatoptions=cqrt
+
+" inkrementelle Suche, alle Treffer hervorheben, Großschreibung ignorieren
+set incsearch hlsearch ignorecase
+
+" Tab-Vervollständigung zum anschauen
+set wildmenu
+
+" Textbreite für automatischen Umbruch festlegen
+"set textwidth=105
+
+" mit dem Cursor und Backspace über Zeilenumbrüche gehen
+set whichwrap=<,>,h,l
+
+" Text an Wörtern umbrechen und weiche Zeilenumbrüche als solche kennzeichnen
+"set wrap linebreak showbreak=\ --\>\ 
+
+" Sonderzeichen anzeigen
+"set list listchars=tab:»·,trail:·,nbsp:+
+
+" Maus erlauben, Copy/Paste korrigieren
+" set mouse=a
+"set clipboard=unnamed
+
+" Copy/Paste-Modus umschalten mit F12
+nmap <silent> <F12> :set paste! number!<CR>
+
+" Tastenkombinationen
+nmap <C-N> :tabnew<CR>
+
+" Autocompletion mit Tab anstatt Ctrl+N
+"function! Tab_Or_Complete()
+"  if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
+"    return "\<C-N>"
+"  else
+"    return "\<Tab>"
+"  endif
+"endfunction
+"inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
+
+" klemmendes Shift ignorieren
+cabbrev Wq wq
+cabbrev W w
+cabbrev Q q
+
+" Less ist CSS
+autocmd BufNewFile,BufRead *.less set filetype=css
+
+" Tabs richtig machen!
+autocmd Filetype css setlocal ts=4 sw=4 expandtab
+autocmd Filetype javascript setlocal ts=4 sw=4 expandtab
+autocmd Filetype html setlocal ts=4 sw=4 expandtab
+autocmd Filetype python setlocal ts=4 sw=4 expandtab
+autocmd Filetype yaml setlocal ts=2 sw=2 expandtab
