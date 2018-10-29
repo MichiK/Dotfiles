@@ -24,6 +24,16 @@ throw() {
   exit 1
 }
 
+# A similar function like the error handler that displays a warning message
+# instead of a hard error. It does basically the same, but the message looks
+# different the script continues to run.
+warn() {
+  [ -z "$1" ] && err="unknown warning" || err="$1"
+  frame=$2
+  read line file <<< "$(caller ${frame-0})"
+  echo -e "\e[93mWARNING in ${file} line ${line}: ${err}\e[0m"
+}
+
 # Check for all the tools we need and throw an error if they are not available.
 [ -x "/usr/bin/diff" ] || throw "diff not found, please install diffutils"
 [ -x "/usr/bin/find" ] || throw "dinf not found, please install findutils"
