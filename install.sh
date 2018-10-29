@@ -10,7 +10,7 @@
 
 set -e
 
-. .lib.sh
+. lib.sh
 
 # Cycle through all subdirectories and look for an install.sh script there.
 # These scripts do the actual work of installing the dotfiles in the respective

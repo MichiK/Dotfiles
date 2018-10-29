@@ -99,9 +99,9 @@ install_dotfile() {
           [dD])
             echo
             if [ -x "/usr/bin/colordiff" ] ; then
-              colordiff -u "${src}" "${tgt}" || true
+              colordiff -u "${tgt}" "${src}" || true
             else
-              diff -u "${src}" "${tgt}" || true
+              diff -u "${tgt}" "${src}" || true
             fi
             ;;
           *)
