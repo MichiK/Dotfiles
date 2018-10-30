@@ -94,4 +94,4 @@ autocmd Filetype html setlocal ts=4 sw=4 expandtab
 autocmd Filetype python setlocal ts=4 sw=4 expandtab
 autocmd Filetype yaml setlocal ts=2 sw=2 expandtab
 
-" vim: set ts=2 sw=2 expandtab:
+" vim: set ts=2 sw=2 expandtab syntax=vim:

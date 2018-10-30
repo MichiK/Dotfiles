@@ -20,3 +20,5 @@ set background=dark
 " Vim's own mouse handling is strange and I dislike it a lot, so it is
 " disabled here globally to provide a sane default behaviour for all users.
 set mouse=
+
+" vim: set ts=2 sw=2 expandtab syntax=vim:
