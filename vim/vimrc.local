@@ -1,17 +1,22 @@
-" Vim will load $VIMRUNTIME/defaults.vim if the user does not have a vimrc.
-" This happens after /etc/vim/vimrc(.local) are loaded, so it will override
-" any settings in these files.
-" If you don't want that to happen, uncomment the below line to prevent
-" defaults.vim from being loaded.
+" ----------------------------------------------------------------------------
+" 'THE BEER-WARE LICENSE' (Revision 42):
+"
+" MichiK <michik@michik.net> wrote this file. As long as you retain this
+" notice you can do whatever you want with this stuff. If we meet some day,
+" and you think this stuff is worth it, you can buy me a beer in return.
+" ----------------------------------------------------------------------------
+
+" Vim has a number of strange and annoying defaults that will overwrite the
+" system's /etc/vimrc. If the user does not their own .vimrc, these defaults
+" are forced, regardless of what the admin has configured. Therefore, we take
+" them out of the game.
 let g:skip_defaults_vim = 1
 
-" Vim5 and later versions support syntax highlighting. Uncommenting the next
-" line enables syntax highlighting by default.
+" Syntax highlighting and dark background should be the default for everyone
+" everywhere, so we enable it here globally.
 syntax on
-
-" If using a dark background within the editing area and syntax highlighting
-" turn on this option as well
 set background=dark
 
-" Disable mouse usage
+" Vim's own mouse handling is strange and I dislike it a lot, so it is
+" disabled here globally to provide a sane default behaviour for all users.
 set mouse=

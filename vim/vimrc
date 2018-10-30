@@ -1,78 +1,93 @@
-" besser ist das
+" ----------------------------------------------------------------------------
+" 'THE BEER-WARE LICENSE' (Revision 42):
+"
+" MichiK <michik@michik.net> wrote this file. As long as you retain this
+" notice you can do whatever you want with this stuff. If we meet some day,
+" and you think this stuff is worth it, you can buy me a beer in return.
+" ----------------------------------------------------------------------------
+
+" Better safe than sorry, disable compatability mode once and for all here.
 set nocompatible
 
-" nicht gespeicherte Buffer erlauben
+" Allow us to have unsaved changes in one file and open another one in the
+" same vim instance.
 set hidden
 
-" nicht verweigern, sondern fragen
+" Ask for confirmation instead of simply denying anything, e.g. when closing
+" with unsaved changes.
 set confirm
 
-" Syntax-Highlighting bitte
+" We want syntax highlighting and we have a dark background.
 syntax on
-
-" dunkler Hintergrund, für alle Fälle
 set background=dark
 
-" #&!$*
+" On Debian, vim by default uses its own mouse handling, which is strange and
+" unintuitive as it is different from the application in the other terminaö
+" next to it. Leave all the mouse stuff to the terminal emulator instead.
 set mouse=
 
-" Zeilennummern in grau
+" Enable line numbers but make them unobstrusive. This may cause problems with
+" copying from the terminal emulator, so see the paste mode shortcut below.
 set number
 highlight LineNr ctermfg=DarkGrey
 
-" automatische Einrückung
+" Automatic intendentation of the next line when we press enter on a line that
+" is already intended. Beware of this for pasting, so see the paste mode
+" shortcut below.
 set autoindent
 
-" beim Zeilenumbruch im Kommentar den Kommentar erhalten
+" In addition to autoindent, we want this to stay within the comment mode
+" if return is pressed in a source code comment. Does not work all the times,
+" but more often than not.
 set formatoptions=cqrt
 
-" inkrementelle Suche, alle Treffer hervorheben, Großschreibung ignorieren
-set incsearch hlsearch ignorecase
-
-" Tab-Vervollständigung zum anschauen
-set wildmenu
-
-" Textbreite für automatischen Umbruch festlegen
-"set textwidth=105
-
-" mit dem Cursor und Backspace über Zeilenumbrüche gehen
-set whichwrap=<,>,h,l
-
-" Text an Wörtern umbrechen und weiche Zeilenumbrüche als solche kennzeichnen
-"set wrap linebreak showbreak=\ --\>\ 
-
-" Sonderzeichen anzeigen
-"set list listchars=tab:»·,trail:·,nbsp:+
-
-" Maus erlauben, Copy/Paste korrigieren
-" set mouse=a
-"set clipboard=unnamed
-
-" Copy/Paste-Modus umschalten mit F12
+" Allow switching to/from paste mode by pressing F12. This defuses autointen
+" and removes the line numbers so copy & paste is easy.
 nmap <silent> <F12> :set paste! number!<CR>
 
-" Tastenkombinationen
-nmap <C-N> :tabnew<CR>
+" Pimp up the search: incsearch finds all results as you type, hlsearch
+" highlights all these results in real-time. ignorecase makes search
+" caase-insensitive, which is what we want most of the times, so we make
+" it the default.
+set incsearch hlsearch ignorecase
 
-" Autocompletion mit Tab anstatt Ctrl+N
-"function! Tab_Or_Complete()
-"  if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
-"    return "\<C-N>"
-"  else
-"    return "\<Tab>"
-"  endif
-"endfunction
-"inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
+" This enables visual tab completion of the menu, similar to zsh etc. Just
+" enter the begin of a command and tab through all the options available
+" (and see them coming).
+set wildmenu
 
-" klemmendes Shift ignorieren
+" Sometimes, automatic line breaks are desireable. Most of the time, they are
+" more annoying than they help, so this is only here for reference should we
+" need it at one point.
+"set textwidth=105
+
+" This allows the cursor in normal mode over line breaks. In addition,
+" backspace jumps over linebreaks as well.
+set whichwrap=<,>,h,l
+
+" Instead of wrapping hard at the edge of the terminal window, this wraps at
+" the last word that completely fits into the window and marks the continuation
+" line. This is merely a matter of taste and can be useful.
+"set wrap linebreak showbreak=\ --\>\ 
+
+" Show tabs, trailing spaces and non-breaking spaces. This helps finding minor
+" layout glitches but can be annoying.
+set list listchars=tab:»·,trail:·,nbsp:+
+
+" When typing fast, the shift key needed to type a colon on the german keyboard
+" might stick a bit too long, so here we have an alias for the most-often used
+" commands to catch this error gracefully and do what was intended originally.
 cabbrev Wq wq
 cabbrev W w
 cabbrev Q q
 
-" Less ist CSS
+" Handle *.less files as CSS with regard to syntax highlighting.
 autocmd BufNewFile,BufRead *.less set filetype=css
 
-" Tabs richtig machen!
+" Tabs vs. spaces is a neverending debate. I like spaces and I like to converve
+" characters to keep liens short, so this is what I want as a sane default.
+" YAML is a bit different, but apart from that, tabs should be spaces and four
+" are more than enough to get the level right (often even two suffice).
 autocmd Filetype css setlocal ts=4 sw=4 expandtab
 autocmd Filetype javascript setlocal ts=4 sw=4 expandtab
 autocmd Filetype html setlocal ts=4 sw=4 expandtab
