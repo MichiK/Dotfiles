@@ -74,6 +74,11 @@ set whichwrap=<,>,h,l
 " layout glitches but can be annoying.
 set list listchars=tab:»·,trail:·,nbsp:+
 
+" When moving the cursor up or down to the edge of the window, start scrolling
+" in advance a few lines so that a bit of context is shown and the cursor
+" always keeps a distance to the edge.
+set scrolloff=5
+
 " When typing fast, the shift key needed to type a colon on the german keyboard
 " might stick a bit too long, so here we have an alias for the most-often used
 " commands to catch this error gracefully and do what was intended originally.
