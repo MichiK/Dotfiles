@@ -15,7 +15,7 @@ URxvt.background:         rgba:0000/0000/0000/aaaa
 URxvt.color4:             #005faf
 URxvt.color12:            #0087ff
 
-URxvt.font:               xft:inconsolata:bold:size=10
+URxvt.font:               xft:inconsolata:bold:size=11
 URxvt.letterSpace:        -0
 
 URxvt.scrollBar:          false
