@@ -18,11 +18,12 @@ set -e
 #
 # This keeps the structure modular and the individual scripts small and clean.
 for dir in $(find "${sourcedir}" -mindepth 1 -maxdepth 1 -type d) ; do
-  [ "${dir}" = "./.git" ] && continue
+  dir="$(basename "${dir}")"
+  [ "${dir}" = ".git" ] && continue
   echo -n "Descending into ${dir}... "
-  if [ -x "${dir}/install.sh" ] ; then
+  if [ -x "${dir}/install-${dir}.sh" ] ; then
     echo
-    (cd "${dir}" ; . install.sh)
+    (cd "${dir}" ; . "install-${dir}.sh")
   else
     echo "skipping!"
   fi
