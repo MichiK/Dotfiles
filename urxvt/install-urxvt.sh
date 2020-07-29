@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -e
-
 install_dotfile xresources .Xresources
 
 echo -n "Installing resize-font extension for urxvt... "

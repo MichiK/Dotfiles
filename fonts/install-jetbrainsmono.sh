@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -e
-
 echo -n "Installing JetBrains Mono... "
 
 if [ -d "${destdir}/.fonts/jetbrainsmono" ] ; then

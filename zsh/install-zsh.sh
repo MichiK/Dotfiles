@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -e
-
 install_dotfile zshrc .zshrc
 
 echo "Installing Oh My Zsh... "
