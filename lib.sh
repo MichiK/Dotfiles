@@ -27,8 +27,11 @@ warn() {
 }
 
 # Check for all the tools we need and throw an error if they are not available.
+[ -x "/usr/bin/curl" ] || throw "curl not found, please install curl"
 [ -x "/usr/bin/diff" ] || throw "diff not found, please install diffutils"
 [ -x "/usr/bin/find" ] || throw "find not found, please install findutils"
+[ -x "/usr/bin/git" ] || throw "git not found, please install git"
+[ -x "/usr/bin/unzip" ] || throw "unzip not found, please install unzip"
 
 # Set the source and destination directory. The source directory is obviously
 # the directory where the install script is in whereas the destination
@@ -132,10 +135,7 @@ clone_git_repo() {
   [ -z "$1" ] && throw "no git repository given" || repo="$1"
   [ -z "$2" ] && throw "no target directory given" || target="${destdir}/$2"
   echo -n "Cloning $1... "
-  if [ ! -x /usr/bin/git ] ; then
-    echo "failed!"
-    warn "git not found"
-  elif [ -d "${target}" ] ; then
+  if [ -d "${target}" ] ; then
     echo "skipping!"
   else
     stderr=$(mktemp)
