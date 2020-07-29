@@ -13,7 +13,7 @@ for dir in $(find "${sourcedir}" -mindepth 1 -maxdepth 1 -type d) ; do
   dir="$(basename "${dir}")"
   [ "${sourdedir}/${dir}" = ".git" ] && continue
   echo -n "Descending into ${dir}... "
-  if [ -x "${sourcedir}/${dir}/install-${dir}.sh" ] ; then
+  if [ -f "${sourcedir}/${dir}/install-${dir}.sh" ] ; then
     echo
     (cd "${sourcedir}/${dir}" ; . "install-${dir}.sh")
   else
