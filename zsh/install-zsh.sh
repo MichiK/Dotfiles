@@ -16,6 +16,8 @@ if [ -d "${destdir}/.oh-my-zsh/custom" ] ; then
     .oh-my-zsh/custom/plugins/zsh-autosuggestions
   clone_git_repo https://github.com/zsh-users/zsh-syntax-highlighting \
     .oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+else
+  warn "Oh My Zsh missing, plugins not installed!"
 fi
 
 # vim: set ts=2 sw=2 expandtab:
