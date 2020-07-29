@@ -120,12 +120,19 @@ zstyle ':completion:*' special-dirs true
 # Tweak the syntax highlighting
 ZSH_HIGHLIGHT_STYLES[globbing]='fg=cyan'
 
-# Default programs for some file types
-alias -s conf=vim
-alias -s jar="java -jar"
-alias -s log="tail -fn50"
-alias -s pdf=evince
-alias -s py=python
-alias -s txt=vim
+# Automatically activate Python venvs
+function cd() {
+  builtin cd "$@"
+  if [[ -z "$VIRTUAL_ENV" ]] ; then
+      if [[ -d ./venv ]] ; then
+        source ./venv/bin/activate
+      fi
+  else
+      parentdir="$(dirname "$VIRTUAL_ENV")"
+      if [[ "$PWD"/ != "$parentdir"/* ]] ; then
+        deactivate
+      fi
+  fi
+}
 
-alias apt="sudo apt"
+alias ls='ls --time-style=long-iso --color=tty'
