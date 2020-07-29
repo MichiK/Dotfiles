@@ -1,20 +1,5 @@
-# vim:ft=zsh ts=2 sw=2 sts=2
-#
 # MichiK's Theme
 # A theme for ZSH, heavily modified from agnoster.
-#
-# # README
-#
-# This theme assumes a 256-color terminal.
-#
-# # Goals
-#
-# The aim of this theme is to only show you *relevant* information. Like most
-# prompts, it will only show git information when in a git working directory.
-# However, it goes a step further: everything from the current user and
-# hostname to whether the last call exited with an error to whether background
-# jobs are running in this shell will all be displayed automatically when
-# appropriate.
 
 ### Segment drawing
 # A few utility functions to make it easy and re-usable to draw segmented prompts
@@ -125,4 +110,7 @@ build_rprompt() {
 }
 
 PROMPT='%{%f%b%k%}$(build_prompt) '
-RPROMPT='%{%f%b%k%}$(build_rprompt)'
+#RPROMPT='%{%f%b%k%}$(build_rprompt)'
+RPROMPT='%{$fg[red]%}${exit_status}%{$reset_color%}'
+
+# vim:ft=zsh ts=2 sw=2 sts=2

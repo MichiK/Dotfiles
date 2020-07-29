@@ -120,4 +120,34 @@ install_dotfile() {
   fi
 }
 
+# This function clones a git repository, e.g. from Github into a given path
+# inside the destination directory. It will silently continue if the directory
+# already exists, assuming that the repository has been cloned already.
+#
+# The function takes two arguments:
+#
+# $1: The repository to clone
+# $2: The destination directory (no mkdir -p needed, git will take care of it)
+clone_git_repo() {
+  [ -z "$1" ] && throw "no git repository given" || repo="$1"
+  [ -z "$2" ] && throw "no target directory given" || target="${destdir}/$2"
+  echo -n "Cloning $1... "
+  if [ ! -x /usr/bin/git ] ; then
+    echo "failed!"
+    warn "git not found"
+  elif [ -d "${target}" ] ; then
+    echo "skipping!"
+  else
+    stderr=$(mktemp)
+    git clone -q "${repo}" "${target}" > /dev/null 2> "${stderr}"
+    if [ -s "${stderr}" ] ; then
+      echo "failed!"
+      warn "$(<"${stderr}")"
+    else
+      echo "done!"
+    fi
+    rm -f "${stderr}"
+  fi
+}
+
 # vim: set ts=2 sw=2 expandtab:
