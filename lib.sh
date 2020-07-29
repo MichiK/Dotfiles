@@ -36,7 +36,7 @@ warn() {
 
 # Check for all the tools we need and throw an error if they are not available.
 [ -x "/usr/bin/diff" ] || throw "diff not found, please install diffutils"
-[ -x "/usr/bin/find" ] || throw "dinf not found, please install findutils"
+[ -x "/usr/bin/find" ] || throw "find not found, please install findutils"
 
 # Set the source and destination directory. The source directory is obviously
 # the directory where the install script is in whereas the destination

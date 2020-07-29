@@ -15,11 +15,11 @@ URxvt.background:         rgba:0000/0000/0000/aaaa
 URxvt.color4:             #005faf
 URxvt.color12:            #0087ff
 
-URxvt.font:               xft:inconsolata:bold:size=11
-URxvt.letterSpace:        -0
+URxvt.font:               xft:JetBrains Mono:Medium:size=10
+URxvt.letterSpace:        -1
 
 URxvt.scrollBar:          false
-URxvt.urgentOnBell:       true
+URxvt.urgentOnBell:       false
 URxvt.internalBorder:     3
 URxvt.iso14755:           false
 URxvt.iso14755_52:        false
