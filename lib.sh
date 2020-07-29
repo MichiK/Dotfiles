@@ -18,13 +18,25 @@ throw() {
 
 # A similar function like the error handler that displays a warning message
 # instead of a hard error. It does basically the same, but the message looks
-# different the script continues to run.
+# different and the script continues to run.
+#
+# The fact that a warning has been issued will be written to a temporary file
+# that can be queried from install.sh to set a non-zero exit code in case of
+# warnings. This hack is needed since the install scripts run in a subshell
+# and therefore can not modify the parent environment directly.
 warn() {
   [ -z "$1" ] && err="unknown warning" || err="$1"
   frame=$2
   read line file <<< "$(caller ${frame-0})"
   echo -e "\e[93mWARNING in ${file} line ${line}: ${err}\e[0m"
+  echo "warned" > "${warnings_file}"
 }
+warnings_file="$(mktemp)"
+cleanup_warnings() {
+  rm -f "${warnings_file}"
+  trap '' EXIT INT QUIT TERM
+}
+trap 'cleanup_warnings' EXIT INT QUIT TERM
 
 # Check for all the tools we need and throw an error if they are not available.
 [ -x "/usr/bin/curl" ] || throw "curl not found, please install curl"
@@ -38,9 +50,9 @@ warn() {
 # directory defaults to the current user's home directory.
 #
 # A different destination directory can given as a command line parameter.
-sourcedir="$(dirname "$0")"
+sourcedir="$(dirname "$(realpath "$0")")"
 if [ -n "$1" ] ; then
-  destdir="$1"
+  destdir="$(realpath "$1")"
 else
   destdir="$HOME"
 fi
