@@ -1,0 +1,10 @@
+configuration {
+  modi: "drun,run,ssh";
+  font: "Noto Sans Bold 14";
+  show-icons: true;
+  drun-icon-theme: "Papirus-Adapta";
+  theme: "theme";
+  display-drun: "::";
+}
+
+// vim: set ts=2 sw=2 expandtab:
