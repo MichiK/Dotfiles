@@ -11,6 +11,7 @@ URxvt.font:               xft:JetBrains Mono:Medium:size=10
 URxvt.letterSpace:        -1
 
 URxvt.scrollBar:          false
+URxvt.saveLines:          32000
 URxvt.urgentOnBell:       false
 URxvt.internalBorder:     3
 URxvt.iso14755:           false
